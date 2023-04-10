@@ -20,12 +20,12 @@ public class DialogsText : MonoBehaviour
 
     private Dialogs _dialogs;
 
-    void Start()
+    private void Start()
     {
         _dialogs = Dialogs.First;
     }
 
-    void Update()
+    private void Update()
     {
         Dialog();
     }

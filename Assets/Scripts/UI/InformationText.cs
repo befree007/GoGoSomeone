@@ -6,7 +6,7 @@ using UnityEngine;
 public class InformationText : MonoBehaviour
 {
     [SerializeField] private List<TextMeshProUGUI> _informationsText;
-    [SerializeField] private TrackManager _trackManager;
+    [SerializeField] private Track _trackManager;
 
     private void Update()
     {
@@ -15,7 +15,7 @@ public class InformationText : MonoBehaviour
 
     public void ShowCompetitorData()
     {
-        if (_trackManager.CurrentState == TrackManager.CompetitorsState.Preparation)
+        if (_trackManager.CurrentState == Track.CompetitorsState.Preparation)
         {
             for (int i = 0; i < _informationsText.Count; i++)
             {
@@ -24,7 +24,7 @@ public class InformationText : MonoBehaviour
                     $"Coefficient: {_trackManager.Competitors[i].CurrentCoefficient}; Line: {_trackManager.Competitors[i].NumberChosen}.";
             }            
         }
-        else if (_trackManager.CurrentState == TrackManager.CompetitorsState.Race)
+        else if (_trackManager.CurrentState == Track.CompetitorsState.Race)
         {
             for (int i = 0; i < _informationsText.Count; i++)
             {

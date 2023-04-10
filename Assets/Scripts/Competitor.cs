@@ -1,27 +1,41 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Animator))]
 public class Competitor : MonoBehaviour
 {
-    public float Speed;
-    public int PositionNumber;
-    public int NumberChosen;
-    public double WinCounter;
-    public double LoseCounter;
-
-    public const double ConstantCoefficient = 3;
-
+    private float _speed;
+    private int _positionNumber;
+    private int _numberChosen;
+    private double _winCounter;
+    private double _loseCounter;
     private Rigidbody2D _rigidbody;
     private Animator _animator;
 
+    [SerializeField] private int _minTimeIndex;
+    [SerializeField] private int _maxTimeIndex;
+    [SerializeField] private float _minRangeSpeed;
+    [SerializeField] private float _maxRangeSpeed;
+    [SerializeField] private Track _trackManager;
+    [SerializeField] private Finish _finish;
+
+    private const string _runAnimation = "Run";
+    private const string _idleAnimation = "Idle";
+    private const double _ConstantCoefficient = 3;
+
     public double CurrentCoefficient { get; private set; }
+    public float Speed => _speed;
+    public int PositionNumber => _positionNumber;
+    public int NumberChosen => _numberChosen;
+    public double WinCounter => _winCounter;
+    public double LoseCounter => _loseCounter;    
 
     private void Start()
     {
-        CurrentCoefficient = ConstantCoefficient;
+        CurrentCoefficient = _ConstantCoefficient;
         _rigidbody = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
     }
@@ -31,22 +45,70 @@ public class Competitor : MonoBehaviour
         Move();
     }
 
+    private void OnEnable()
+    {
+        _finish.WinCounterChanged += WinChanging;
+        _finish.LoseCounterChanged += LoseChanging;
+    }
+
+    private void OnDisable()
+    {
+        _finish.WinCounterChanged -= WinChanging;
+        _finish.LoseCounterChanged -= LoseChanging;
+    }
+
     public void Move()
     {
-        if (Speed != 0)
+        if (_speed != 0)
         {
-            _animator.Play("Run");
+            _animator.Play(_runAnimation);
         }
         else
         {
-            _animator.Play("Idle");
+            _animator.Play(_idleAnimation);
         }
 
-        _rigidbody.velocity = new Vector2(Speed, 0);
+        _rigidbody.velocity = new Vector2(_speed, 0);
+    }
+
+    public void IdleSpeed(int speed)
+    {
+        _speed = speed;
+    }
+
+    public void RunSpeed()
+    {
+        int timeIndex = Random.Range(_minTimeIndex, _maxTimeIndex);
+
+        if (timeIndex == 1)
+        {
+            float rnd = (float)Random.Range(_minRangeSpeed, _maxRangeSpeed);
+            _speed = rnd;
+        }
+    }
+
+    public void PositionSet(int position)
+    {
+        _positionNumber = position;
+    }
+
+    public void NumberChosenSet(int number)
+    {
+        _numberChosen = number;
+    }
+
+    public void WinChanging()
+    {
+        _winCounter += 1;        
+    }
+
+    public void LoseChanging()
+    {
+        _loseCounter += 1;
     }
 
     public void CoefficientCount()
     {
-        CurrentCoefficient = ConstantCoefficient - WinCounter / 10 + LoseCounter / 10;
+        CurrentCoefficient = _ConstantCoefficient - _winCounter / 10 + _loseCounter / 10;
     }
 }

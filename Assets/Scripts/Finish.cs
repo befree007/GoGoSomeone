@@ -2,17 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class Finish : MonoBehaviour
 {
     [SerializeField] private GameObject _finishScene;
     [SerializeField] private TextMeshProUGUI _resultText;
-    [SerializeField] private BookmakerManager _bookmakerManager;
-
-    [SerializeField] protected TrackManager _trackManager;
+    [SerializeField] private Bookmaker _bookmakerManager;
+    [SerializeField] private Track _trackManager;
 
     private List<Competitor> _competitorPosition = new List<Competitor>();
+
+    public UnityAction StateChanged;
+    public event UnityAction WinCounterChanged;
+    public event UnityAction LoseCounterChanged;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -22,35 +26,25 @@ public class Finish : MonoBehaviour
 
             if (collision.gameObject.GetComponent<Competitor>().PositionNumber == 1)
             {
-                collision.gameObject.GetComponent<Competitor>().WinCounter += 1;
+                collision.gameObject.GetComponent<Competitor>().WinChanging(); 
             }
             else
             {
-                collision.gameObject.GetComponent<Competitor>().LoseCounter += 1;
+                collision.gameObject.GetComponent<Competitor>().LoseChanging();
             }
 
             if (_competitorPosition.Count == _trackManager.Competitors.Count)
             {
                 Debug.Log("Finish");
-                _trackManager.CurrentState = TrackManager.CompetitorsState.Result;
+                StateChanged?.Invoke();
+                //_trackManager.CurrentState = Track.CompetitorsState.Result;
                 _bookmakerManager.WinMoney(_competitorPosition[0]);
                 UpdateCoefficient();
-                _bookmakerManager.DayCount += 1;
                 _finishScene.SetActive(true);
                 ShowResult();
                 _bookmakerManager.Zeroing();
                 _competitorPosition.Clear();
             }
-        }
-    }
-
-    public void NewRaceButton()
-    {
-        if (_trackManager.CurrentState == TrackManager.CompetitorsState.Result)
-        {
-            _trackManager.CurrentState = TrackManager.CompetitorsState.Preparation;
-            Time.timeScale = 1f;
-            _finishScene.SetActive(false);
         }
     }
 
