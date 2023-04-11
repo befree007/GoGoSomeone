@@ -9,14 +9,14 @@ public class Finish : MonoBehaviour
 {
     [SerializeField] private GameObject _finishScene;
     [SerializeField] private TextMeshProUGUI _resultText;
-    [SerializeField] private Bookmaker _bookmakerManager;
-    [SerializeField] private Track _trackManager;
+    [SerializeField] private Bookmaker _bookmaker;
+    [SerializeField] private Track _track;
 
     private List<Competitor> _competitorPosition = new List<Competitor>();
 
     public UnityAction StateChanged;
-    public event UnityAction WinCounterChanged;
-    public event UnityAction LoseCounterChanged;
+
+    private const int _resultChanging = 1;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -26,23 +26,22 @@ public class Finish : MonoBehaviour
 
             if (collision.gameObject.GetComponent<Competitor>().PositionNumber == 1)
             {
-                collision.gameObject.GetComponent<Competitor>().WinChanging(); 
+                collision.gameObject.GetComponent<Competitor>().WinChanging(_resultChanging); 
             }
             else
             {
-                collision.gameObject.GetComponent<Competitor>().LoseChanging();
+                collision.gameObject.GetComponent<Competitor>().LoseChanging(_resultChanging);
             }
 
-            if (_competitorPosition.Count == _trackManager.Competitors.Count)
+            if (_competitorPosition.Count == _track.Competitors.Count)
             {
                 Debug.Log("Finish");
                 StateChanged?.Invoke();
-                //_trackManager.CurrentState = Track.CompetitorsState.Result;
-                _bookmakerManager.WinMoney(_competitorPosition[0]);
+                _bookmaker.WinMoney(_competitorPosition[0]);
                 UpdateCoefficient();
                 _finishScene.SetActive(true);
                 ShowResult();
-                _bookmakerManager.Zeroing();
+                _bookmaker.Zeroing();
                 _competitorPosition.Clear();
             }
         }

@@ -16,7 +16,7 @@ public class Bookmaker : MonoBehaviour
     [SerializeField] private int _dayCount;
     [SerializeField] private int _dayPayment;
     [SerializeField] private Competitor _competitorChosen = null;
-    [SerializeField] private Track _trackManager;
+    [SerializeField] private Track _track;
 
     [SerializeField] private TextMeshProUGUI _betMadeText;
     [SerializeField] private TextMeshProUGUI _betChangeText;
@@ -66,7 +66,7 @@ public class Bookmaker : MonoBehaviour
 
     public void CheckDayPayment()
     {
-        if (_trackManager.CurrentState == Track.CompetitorsState.Result && _dayCount > _dayPayment)
+        if (_track.CurrentState == Track.CompetitorsState.Result && _dayCount > _dayPayment)
         {
             Time.timeScale = 0f;
             _paymentPanel.SetActive(true);
@@ -81,9 +81,9 @@ public class Bookmaker : MonoBehaviour
         _betChanges = 0;
         _competitorChosen = null;
 
-        for (int i = 0; i < _trackManager.Competitors.Count; i++)
+        for (int i = 0; i < _track.Competitors.Count; i++)
         {
-            _trackManager.Competitors[i].NumberChosenSet(0);
+            _track.Competitors[i].NumberChosenSet(0);
         }
     }
 
@@ -128,17 +128,15 @@ public class Bookmaker : MonoBehaviour
 
     public void ChoseCompetitor(int index)
     {
-        if (_trackManager.CurrentState == Track.CompetitorsState.Preparation)
+        if (_track.CurrentState == Track.CompetitorsState.Preparation)
         {
-            Debug.Log(index);
-            //_trackManager.Competitors[index - 1].NumberChosenSet(index);
-            _competitorChosen = _trackManager.Competitors[index - 1];
+            _competitorChosen = _track.Competitors[index - 1];
         }
     }
 
     public void Bet()
     {
-        if (_trackManager.CurrentState == Track.CompetitorsState.Preparation && _betChanges > 0)
+        if (_track.CurrentState == Track.CompetitorsState.Preparation && _betChanges > 0)
         {
             if (_betChanges > _balance)
             {
@@ -154,35 +152,8 @@ public class Bookmaker : MonoBehaviour
         }
     }
 
-    public void Decrease10()
+    public void BetChanging(int betChanges)
     {
-        if (_trackManager.CurrentState == Track.CompetitorsState.Preparation)
-        {
-            _betChanges -= 10;
-        }
-    }
-
-    public void Decrease1()
-    {
-        if (_trackManager.CurrentState == Track.CompetitorsState.Preparation)
-        {
-            _betChanges -= 1;
-        }
-    }
-
-    public void Increase10()
-    {
-        if (_trackManager.CurrentState == Track.CompetitorsState.Preparation)
-        {
-            _betChanges += 10;
-        }
-    }
-
-    public void Increase1()
-    {
-        if (_trackManager.CurrentState == Track.CompetitorsState.Preparation)
-        {
-            _betChanges += 1;
-        }
+        _betChanges += betChanges;
     }
 }

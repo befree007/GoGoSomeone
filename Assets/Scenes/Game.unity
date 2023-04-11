@@ -872,6 +872,7 @@ GameObject:
   - component: {fileID: 156933433}
   - component: {fileID: 156933432}
   - component: {fileID: 156933431}
+  - component: {fileID: 156933434}
   m_Layer: 5
   m_Name: Decrease10
   m_TagString: Untagged
@@ -943,9 +944,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1312567237}
-        m_TargetAssemblyTypeName: Bookmaker, Assembly-CSharp
-        m_MethodName: Decrease10
+      - m_Target: {fileID: 156933434}
+        m_TargetAssemblyTypeName: BetChanges, Assembly-CSharp
+        m_MethodName: BetChoosing
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -993,6 +994,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 156933429}
   m_CullTransparentMesh: 1
+--- !u!114 &156933434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 156933429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25205b776bda6be4bb5f877978166398, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _track: {fileID: 1620442680}
+  _bookmaker: {fileID: 1312567237}
 --- !u!114 &195689952 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6611144478696432052, guid: c303a1b92ba53544a86da97d1f6b16e0, type: 3}
@@ -1380,6 +1395,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6611144478696432052, guid: c303a1b92ba53544a86da97d1f6b16e0, type: 3}
+      propertyPath: _track
+      value: 
+      objectReference: {fileID: 1620442680}
     - target: {fileID: 6611144478696432052, guid: c303a1b92ba53544a86da97d1f6b16e0, type: 3}
       propertyPath: _finish
       value: 
@@ -2282,7 +2301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 023245848e969e14882cf31c2fae66f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bookmakerManager: {fileID: 1312567237}
+  _bookmaker: {fileID: 1312567237}
 --- !u!1 &567674228
 GameObject:
   m_ObjectHideFlags: 0
@@ -3780,7 +3799,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 023245848e969e14882cf31c2fae66f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bookmakerManager: {fileID: 1312567237}
+  _bookmaker: {fileID: 1312567237}
 --- !u!114 &814802419 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 528445307367956253, guid: f02ea7c874e4c3a4fa00878123a60f21, type: 3}
@@ -5065,7 +5084,7 @@ MonoBehaviour:
   - {fileID: 662566539}
   - {fileID: 1920463604}
   - {fileID: 1332794315}
-  _trackManager: {fileID: 1620442680}
+  _track: {fileID: 1620442680}
 --- !u!1 &1038809724
 GameObject:
   m_ObjectHideFlags: 0
@@ -9801,6 +9820,7 @@ GameObject:
   - component: {fileID: 1256809179}
   - component: {fileID: 1256809178}
   - component: {fileID: 1256809177}
+  - component: {fileID: 1256809180}
   m_Layer: 5
   m_Name: Decrease1
   m_TagString: Untagged
@@ -9872,9 +9892,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1312567237}
-        m_TargetAssemblyTypeName: Bookmaker, Assembly-CSharp
-        m_MethodName: Decrease1
+      - m_Target: {fileID: 1256809180}
+        m_TargetAssemblyTypeName: BetChanges, Assembly-CSharp
+        m_MethodName: BetChoosing
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9922,6 +9942,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1256809175}
   m_CullTransparentMesh: 1
+--- !u!114 &1256809180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1256809175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25205b776bda6be4bb5f877978166398, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _track: {fileID: 1620442680}
+  _bookmaker: {fileID: 1312567237}
 --- !u!114 &1312567237 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8688444870075379385, guid: c8f9279c51803c1448014532631d91be, type: 3}
@@ -10291,7 +10325,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 023245848e969e14882cf31c2fae66f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bookmakerManager: {fileID: 1312567237}
+  _bookmaker: {fileID: 1312567237}
 --- !u!1 &1495955139 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2532167474984453951, guid: 1ea212fe136633044a35ec444ff17cad, type: 3}
@@ -10309,7 +10343,6 @@ GameObject:
   - component: {fileID: 1543018159}
   - component: {fileID: 1543018158}
   - component: {fileID: 1543018157}
-  - component: {fileID: 1543018156}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -10317,18 +10350,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1543018156
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1543018155}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbefa7f1893a5c147a9a57c5944febff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1543018157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10869,6 +10890,7 @@ GameObject:
   - component: {fileID: 1712738996}
   - component: {fileID: 1712738995}
   - component: {fileID: 1712738994}
+  - component: {fileID: 1712738997}
   m_Layer: 5
   m_Name: Increase10
   m_TagString: Untagged
@@ -10940,9 +10962,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1312567237}
-        m_TargetAssemblyTypeName: Bookmaker, Assembly-CSharp
-        m_MethodName: Increase10
+      - m_Target: {fileID: 1712738997}
+        m_TargetAssemblyTypeName: BetChanges, Assembly-CSharp
+        m_MethodName: BetChoosing
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10990,6 +11012,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1712738992}
   m_CullTransparentMesh: 1
+--- !u!114 &1712738997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1712738992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25205b776bda6be4bb5f877978166398, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _track: {fileID: 1620442680}
+  _bookmaker: {fileID: 1312567237}
 --- !u!1 &1725942494
 GameObject:
   m_ObjectHideFlags: 0
@@ -12277,6 +12313,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1296661689740585324, guid: 88c99ad7543439d4cb64e9243066a4ec, type: 3}
+      propertyPath: _track
+      value: 
+      objectReference: {fileID: 1620442680}
+    - target: {fileID: 1296661689740585324, guid: 88c99ad7543439d4cb64e9243066a4ec, type: 3}
       propertyPath: _finish
       value: 
       objectReference: {fileID: 775148465}
@@ -12500,6 +12540,7 @@ GameObject:
   - component: {fileID: 2024756798}
   - component: {fileID: 2024756797}
   - component: {fileID: 2024756796}
+  - component: {fileID: 2024756799}
   m_Layer: 5
   m_Name: Increase1
   m_TagString: Untagged
@@ -12571,9 +12612,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1312567237}
-        m_TargetAssemblyTypeName: Bookmaker, Assembly-CSharp
-        m_MethodName: Increase1
+      - m_Target: {fileID: 2024756799}
+        m_TargetAssemblyTypeName: BetChanges, Assembly-CSharp
+        m_MethodName: BetChoosing
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12621,6 +12662,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2024756794}
   m_CullTransparentMesh: 1
+--- !u!114 &2024756799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2024756794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25205b776bda6be4bb5f877978166398, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _track: {fileID: 1620442680}
+  _bookmaker: {fileID: 1312567237}
 --- !u!1 &2028732907
 GameObject:
   m_ObjectHideFlags: 0
@@ -12876,6 +12931,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 528445307367956253, guid: f02ea7c874e4c3a4fa00878123a60f21, type: 3}
+      propertyPath: _track
+      value: 
+      objectReference: {fileID: 1620442680}
     - target: {fileID: 528445307367956253, guid: f02ea7c874e4c3a4fa00878123a60f21, type: 3}
       propertyPath: _finish
       value: 
@@ -13156,6 +13215,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8688444870075379385, guid: c8f9279c51803c1448014532631d91be, type: 3}
+      propertyPath: _track
+      value: 
+      objectReference: {fileID: 1620442680}
+    - target: {fileID: 8688444870075379385, guid: c8f9279c51803c1448014532631d91be, type: 3}
       propertyPath: _debtText
       value: 
       objectReference: {fileID: 1697678560}
@@ -13257,6 +13320,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 775148465}
     - target: {fileID: 6067992469704875039, guid: 6b72747f71c959a46b206787d7760d12, type: 3}
+      propertyPath: _bookmaker
+      value: 
+      objectReference: {fileID: 1312567237}
+    - target: {fileID: 6067992469704875039, guid: 6b72747f71c959a46b206787d7760d12, type: 3}
       propertyPath: _bookmakerManager
       value: 
       objectReference: {fileID: 1312567237}
@@ -13341,6 +13408,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: FinishLine
       objectReference: {fileID: 0}
+    - target: {fileID: 7564992957887740916, guid: 8d6d7f923e1928d49b1c9966b4a7b219, type: 3}
+      propertyPath: _track
+      value: 
+      objectReference: {fileID: 1620442680}
+    - target: {fileID: 7564992957887740916, guid: 8d6d7f923e1928d49b1c9966b4a7b219, type: 3}
+      propertyPath: _bookmaker
+      value: 
+      objectReference: {fileID: 1312567237}
     - target: {fileID: 7564992957887740916, guid: 8d6d7f923e1928d49b1c9966b4a7b219, type: 3}
       propertyPath: _resultText
       value: 

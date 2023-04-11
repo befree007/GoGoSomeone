@@ -19,12 +19,13 @@ public class Competitor : MonoBehaviour
     [SerializeField] private int _maxTimeIndex;
     [SerializeField] private float _minRangeSpeed;
     [SerializeField] private float _maxRangeSpeed;
-    [SerializeField] private Track _trackManager;
+    [SerializeField] private Track _track;
     [SerializeField] private Finish _finish;
 
     private const string _runAnimation = "Run";
     private const string _idleAnimation = "Idle";
-    private const double _ConstantCoefficient = 3;
+    private const double _constantCoefficient = 3;
+    private const double _divider = 10;
 
     public double CurrentCoefficient { get; private set; }
     public float Speed => _speed;
@@ -35,7 +36,7 @@ public class Competitor : MonoBehaviour
 
     private void Start()
     {
-        CurrentCoefficient = _ConstantCoefficient;
+        CurrentCoefficient = _constantCoefficient;
         _rigidbody = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
     }
@@ -43,18 +44,6 @@ public class Competitor : MonoBehaviour
     private void Update()
     {
         Move();
-    }
-
-    private void OnEnable()
-    {
-        _finish.WinCounterChanged += WinChanging;
-        _finish.LoseCounterChanged += LoseChanging;
-    }
-
-    private void OnDisable()
-    {
-        _finish.WinCounterChanged -= WinChanging;
-        _finish.LoseCounterChanged -= LoseChanging;
     }
 
     public void Move()
@@ -97,18 +86,18 @@ public class Competitor : MonoBehaviour
         _numberChosen = number;
     }
 
-    public void WinChanging()
+    public void WinChanging(int winCounter)
     {
-        _winCounter += 1;        
+        _winCounter += winCounter;        
     }
 
-    public void LoseChanging()
+    public void LoseChanging(int loseCounter)
     {
-        _loseCounter += 1;
+        _loseCounter += loseCounter;
     }
 
     public void CoefficientCount()
     {
-        CurrentCoefficient = _ConstantCoefficient - _winCounter / 10 + _loseCounter / 10;
+        CurrentCoefficient = _constantCoefficient - _winCounter / _divider + _loseCounter / _divider;
     }
 }

@@ -16,7 +16,7 @@ public class Track : MonoBehaviour
 
     [SerializeField] private List<GameObject> _startPoints = new List<GameObject>();
     [SerializeField] private List<Competitor> _competitors;
-    [SerializeField] private Bookmaker _bookmakerManager;
+    [SerializeField] private Bookmaker _bookmaker;
     [SerializeField] private Finish _finish;
 
     public CompetitorsState CurrentState { get; private set; }
@@ -29,8 +29,7 @@ public class Track : MonoBehaviour
 
     private void Update()
     {
-        RaceState();        
-        Debug.Log(CurrentState);
+        RaceState();
     }
 
     private void OnEnable()
@@ -113,7 +112,7 @@ public class Track : MonoBehaviour
 
     public void StartRace()
     {
-        if (CurrentState == Track.CompetitorsState.Preparation && _bookmakerManager.CompetitorChosen != null && _bookmakerManager.BetMade > 0)
+        if (CurrentState == Track.CompetitorsState.Preparation && _bookmaker.CompetitorChosen != null && _bookmaker.BetMade > 0)
         {
             CurrentState = Track.CompetitorsState.Race;
         }

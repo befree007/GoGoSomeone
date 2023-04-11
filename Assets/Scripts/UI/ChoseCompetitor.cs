@@ -6,11 +6,11 @@ using UnityEngine;
 
 public class ChoseCompetitor : MonoBehaviour
 {
-    [SerializeField] private Bookmaker _bookmakerManager;
+    [SerializeField] private Bookmaker _bookmaker;
 
     public void ChoseCompetitorButton()
     {
         int index = Convert.ToInt32(GetComponentInChildren<TextMeshProUGUI>().text);
-        _bookmakerManager.ChoseCompetitor(index);
+        _bookmaker.ChoseCompetitor(index);
     }
 }
