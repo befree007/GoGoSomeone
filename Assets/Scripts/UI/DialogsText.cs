@@ -20,6 +20,8 @@ public class DialogsText : MonoBehaviour
 
     private Dialogs _dialogs;
 
+    private const string _loadScene = "Game";
+
     private void Start()
     {
         _dialogs = Dialogs.First;
@@ -59,7 +61,7 @@ public class DialogsText : MonoBehaviour
         else if (_dialogs == Dialogs.Second)
         {
             Time.timeScale = 1f;
-            SceneManager.LoadScene("Game", LoadSceneMode.Single);
+            SceneManager.LoadScene(_loadScene, LoadSceneMode.Single);
         }
     }
 }

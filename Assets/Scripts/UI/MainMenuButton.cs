@@ -5,9 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuButton : MonoBehaviour
 {
+    private const string _loadScene = "Menu";
+
     public void MainMenu()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("Menu", LoadSceneMode.Single);
+        SceneManager.LoadScene(_loadScene, LoadSceneMode.Single);
     }
 }

@@ -5,9 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class NewGameButton : MonoBehaviour
 {
+    private const string _loadScene = "Preview";
+
     public void NewGame()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("Preview", LoadSceneMode.Single);
+        SceneManager.LoadScene(_loadScene, LoadSceneMode.Single);
     }
 }
