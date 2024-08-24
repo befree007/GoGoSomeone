@@ -43,13 +43,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7c93be181a505549a90f15110c1ab38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _competitors:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  startPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  CompetitorChosen: {fileID: 0}
-  competitorsState: 0
+  Competitors:
+  - {fileID: 528445307367956253, guid: f02ea7c874e4c3a4fa00878123a60f21, type: 3}
+  - {fileID: 6611144478696432052, guid: c303a1b92ba53544a86da97d1f6b16e0, type: 3}
+  - {fileID: 1296661689740585324, guid: 88c99ad7543439d4cb64e9243066a4ec, type: 3}
+  _startPoints: []
+  _minTimeIndex: 0
+  _maxTimeIndex: 0
+  _minRangeSpeed: 0
+  _maxRangeSpeed: 0

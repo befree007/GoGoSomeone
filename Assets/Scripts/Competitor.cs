@@ -71,8 +71,8 @@ public class Competitor : MonoBehaviour
 
         if (timeIndex == 1)
         {
-            float rnd = (float)Random.Range(_minRangeSpeed, _maxRangeSpeed);
-            _speed = rnd;
+            float rndSpeed = (float)Random.Range(_minRangeSpeed, _maxRangeSpeed);
+            _speed = rndSpeed;
         }
     }
 

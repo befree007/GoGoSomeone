@@ -10,7 +10,6 @@ public class Bookmaker : MonoBehaviour
     [SerializeField] private double _debt;
     [SerializeField] private double _balance;
     [SerializeField] private double _secondChanceBalance;
-    [SerializeField] private double _betMade;
     [SerializeField] private double _betChanges;
     [SerializeField] private double _fixPayment;
     [SerializeField] private int _dayCount;
@@ -19,7 +18,6 @@ public class Bookmaker : MonoBehaviour
     [SerializeField] private Track _track;
 
     [SerializeField] private TextMeshProUGUI _betMadeText;
-    [SerializeField] private TextMeshProUGUI _betChangeText;
     [SerializeField] private TextMeshProUGUI _dayCountText;
     [SerializeField] private TextMeshProUGUI _debtText;
     [SerializeField] private TextMeshProUGUI _balanceText;
@@ -33,7 +31,6 @@ public class Bookmaker : MonoBehaviour
     public double Debt => _debt;
     public double Balance => _balance;
     public double SecondChanceBalance => _secondChanceBalance;
-    public double BetMade => _betMade;
     public double BetChanges => _betChanges;
     public double FixPayment => _fixPayment;
     public int DayCount => _dayCount;
@@ -51,8 +48,7 @@ public class Bookmaker : MonoBehaviour
         _dayCountText.text = $"Day: {_dayCount}";
         _debtText.text = $"Debt: {_debt} $";
         _balanceText.text = $"Balance: {_balance} $";
-        _betMadeText.text = $"Block: {_betMade} $";
-        _betChangeText.text = $"Bet: {_betChanges} $";
+        _betMadeText.text = $"Bet: {_betChanges} $";
 
         if (_competitorChosen != null)
         {
@@ -77,7 +73,6 @@ public class Bookmaker : MonoBehaviour
     public void Zeroing()
     {
         _dayCount += 1;
-        _betMade = 0;
         _betChanges = 0;
         _competitorChosen = null;
 
@@ -91,7 +86,7 @@ public class Bookmaker : MonoBehaviour
     {
         if (_competitorChosen == competitor)
         {
-            _balance += _betMade * competitor.CurrentCoefficient;
+            _balance += _betChanges * competitor.CurrentCoefficient;
         }
 
         CheckSecondChance();
@@ -134,22 +129,17 @@ public class Bookmaker : MonoBehaviour
         }
     }
 
-    public void Bet()
+    public void BetReset()
     {
-        if (_track.CurrentState == Track.CompetitorsState.Preparation && _betChanges > 0)
+        if (_track.CurrentState == Track.CompetitorsState.Preparation)
         {
-            if (_betChanges > _balance)
-            {
-                _betMade = _balance;
-            }
-            else
-            {
-                _betMade = _betChanges;
-                _balance -= _betMade;
-            }
-
             _betChanges = 0;
         }
+    }
+
+    public void BetMaded()
+    {
+        _balance -= _betChanges;
     }
 
     public void BetChanging(int betChanges)

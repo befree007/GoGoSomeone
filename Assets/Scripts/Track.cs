@@ -112,8 +112,9 @@ public class Track : MonoBehaviour
 
     public void StartRace()
     {
-        if (CurrentState == Track.CompetitorsState.Preparation && _bookmaker.CompetitorChosen != null && _bookmaker.BetMade > 0)
+        if (CurrentState == Track.CompetitorsState.Preparation && _bookmaker.CompetitorChosen != null && _bookmaker.BetChanges > 0)
         {
+            _bookmaker.BetMaded();
             CurrentState = Track.CompetitorsState.Race;
         }
     }

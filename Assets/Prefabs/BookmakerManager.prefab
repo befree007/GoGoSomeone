@@ -40,18 +40,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 4544706956414374399}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ae149777659ba946b8e98f7678ecc76, type: 3}
+  m_Script: {fileID: 11500000, guid: 7ff77e4d44e2e2b4fb7a58089797b5b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerName: 
-  debt: 0
-  balance: 0
-  betMade: 0
-  betChanges: 0
-  dayCount: 0
-  betMadeText: {fileID: 0}
-  betChangeText: {fileID: 0}
-  dayCountText: {fileID: 0}
-  debtText: {fileID: 0}
-  balanceText: {fileID: 0}
-  coefficientTexts: []
+  PlayerName: 
+  Debt: 0
+  Balance: 0
+  SecondChanceBalance: 0
+  BetMade: 0
+  BetChanges: 0
+  FixPayment: 0
+  DayCount: 0
+  DayPayment: 0
+  CompetitorChosen: {fileID: 0}
+  _betMadeText: {fileID: 0}
+  _betChangeText: {fileID: 0}
+  _dayCountText: {fileID: 0}
+  _debtText: {fileID: 0}
+  _balanceText: {fileID: 0}
+  _competitorChosenText: {fileID: 0}
+  _paymentPanel: {fileID: 0}
+  _gameOverPanel: {fileID: 0}
+  _secondChancePanel: {fileID: 0}
+  _trackManager: {fileID: 0}
