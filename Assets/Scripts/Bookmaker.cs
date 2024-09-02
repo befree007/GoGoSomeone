@@ -139,11 +139,31 @@ public class Bookmaker : MonoBehaviour
 
     public void BetMaded()
     {
-        _balance -= _betChanges;
+        if (_balance >= _betChanges)
+        {
+            _balance -= _betChanges;
+        }
+        else
+        {
+            _betChanges = _balance;
+            _balance = 0;
+        }
     }
 
     public void BetChanging(int betChanges)
     {
         _betChanges += betChanges;
+    }
+
+    public void LoadData()
+    {
+        if (PlayerPrefs.HasKey("Balance") || PlayerPrefs.HasKey("Debt") || PlayerPrefs.HasKey("Day"))
+        {
+            _balance = PlayerPrefs.GetFloat("Balance");
+            _debt = PlayerPrefs.GetFloat("Debt");
+            _dayCount = PlayerPrefs.GetInt("Day");
+
+            Debug.Log("Game data loaded!");
+        }
     }
 }
